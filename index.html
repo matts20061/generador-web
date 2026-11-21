@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Café Aurora | Aromas y Tradición</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #3c2415;
+            --primary-light: #5a3822;
+            --accent: #c88a58;
+            --accent-hover: #b07240;
+            --bg: #fcf9f5;
+            --surface: #ffffff;
+            --text-main: #2a1f1b;
+            --text-muted: #72625a;
+            --border: #ebdcd0;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* HEADER & NAV */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(252, 249, 245, 0.95);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: #fff;
+            padding: 0.75rem 1.6rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: transparent;
+            color: var(--accent);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            background: linear-gradient(rgba(42, 31, 27, 0.75), rgba(42, 31, 27, 0.75)), 
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+            color: #ffffff;
+        }
+
+        .hero-content {
+            max-width: 650px;
+        }
+
+        .hero-tagline {
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #e0d7d0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* SECTION COMMON */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3.5rem auto;
+        }
+
+        .section-subtitle {
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        /* FEATURES BADGES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+            padding: 0 5%;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .feature-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* MENU SECTION */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-category {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.03);
+            border: 1px solid var(--border);
+        }
+
+        .category-title {
+            font-size: 1.6rem;
+            color: var(--primary);
+            border-bottom: 2px dashed var(--border);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1.5rem;
+        }
+
+        .menu-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .item-info {
+            flex-grow: 1;
+            padding-right: 1.5rem;
+        }
+
+        .item-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 0.2rem;
+        }
+
+        .item-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .item-price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.15rem;
+            white-space: nowrap;
+        }
+
+        /* CONTACT SECTION */
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            background: var(--surface);
+            padding: 3rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            border: 1px solid var(--border);
+        }
+
+        .contact-details h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-list li {
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .contact-info-list strong {
+            color: var(--primary);
+            display: block;
+        }
+
+        .contact-info-icon {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-top: 0.1rem;
+        }
+
+        .hours-box {
+            background-color: var(--bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .hours-box h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .hours-box p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin: 0.2rem 0;
+        }
+
+        /* FORM */
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+
+        .form-group input, 
+        .form-group textarea {
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            background-color: var(--bg);
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, 
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(200, 138, 88, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--primary);
+            color: #d1c4bc;
+            text-align: center;
+            padding: 2.5rem 5%;
+            font-size: 0.9rem;
+        }
+
+        footer p {
+            margin: 0.3rem 0;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+            }
+
+            .features {
+                margin-top: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <header>
+        <a href="#inicio" class="logo">
+            ☕ Café<span>Aurora</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+        <a href="#contacto" class="btn btn-accent">Reservar Mesa</a>
+    </header>
+
+    <!-- INICIO (HERO) -->
+    <main>
+        <section class="hero" id="inicio">
+            <div class="hero-content">
+                <span class="hero-tagline">Tostado de origen artesanal</span>
+                <h1>El auténtico placer del buen café</h1>
+                <p>Granos seleccionados éticamente y horneados diarios de bollería europea te esperan en nuestro acogedor rincón.</p>
+                <div class="hero-buttons">
+                    <a href="#menu" class="btn btn-accent">Ver Carta Completa</a>
+                    <a href="#contacto" class="btn">Dónde Encontrarnos</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CARACTERÍSTICAS -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h3>100% Ecológico</h3>
+                <p>Granos arábica certificados de comercio justo y cultivo sostenible.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🥐</div>
+                <h3>Horno Diario</h3>
+                <p>Panes rústicos y repostería artesanal horneados cada mañana a primera hora.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">✨</div>
+                <h3>Ambiente Cálido</h3>
+                <p>Espacios tranquilos ideales para leer, conversar o trabajar cómodamente.</p>
+            </div>
+        </div>
+
+        <!-- MENÚ -->
+        <section id="menu">
+            <div class="section-header">
+                <span class="section-subtitle">Nuestras Delicias</span>
+                <h2 class="section-title">Menú Artesanal</h2>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Cafés Clásicos -->
+                <div class="menu-category">
+                    <h3 class="category-title">Cafés Clásicos <span>☕</span></h3>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4 class="item-name">Espresso Solo</h4>
+                            <p class="item-desc">Extracción pura, crema densa y notas intensas de cacao.</p>
+                        </div>
+                        <span class="item-price">€2.20</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4 class="item-name">Flat White Australiano</h4>
+                            <p class="item-desc">Doble espresso con microespuma de leche sedosa.</p>
+                        </div>
+                        <span class="item-price">€3.20</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4 class="item-name">Cappuccino Tradicional</h4>
+                            <p class="item-desc">Equilibrio perfecto de café, leche y abundante espuma con cacao.</p>
+                        </div>
+                        <span class="item-price">€2.90</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4 class="item-name">Cold Brew Nitro</h4>
+                            <p class="item-desc">Macerado en frío por 18h, infusionado con nitrógeno.</p>
+                        </div>
+                        <span class="item-price">€3.80</span>
+                    </div>
+                </div>
+
+                <!-- Especialidades & Dulces -->
+                <div class="menu-category">
+                    <h3 class="category-title">Especialidades & Repostería <span>🍰</span></h3>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4 class="item-name">Mocha Avellana Tostada</h4>
+                            <p class="item-desc">Espresso, chocolate belga oscuro y sirope artesanal de avellana.</p>
+                        </div>
+                        <span class="item-price">€4.10</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4 class="item-name">Matcha Latte Ceremonial</h4>
+                            <p class="item-desc">Té matcha japonés de grado ceremonial con leche de avena.</p>
+                        </div>
+                        <span class="item-price">€3.90</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4 class="item-name">Croissant de Mantequilla</h4>
+                            <p class="item-desc">Elaborado con mantequilla francesa de fermentación lenta.</p>
+                        </div>
+                        <span class="item-price">€2.40</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="item-info">
+                            <h4 class="item-name">Tarta de Zanahoria & Nuez</h4>
+                            <p class="item-desc">Bizcocho especiado con canela, nueces y glaseado de queso crema.</p>
+                        </div>
+                        <span class="item-price">€4.50</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section id="contacto">
+            <div class="section-header">
+                <span class="section-subtitle">¿Nos vemos pronto?</span>
+                <h2 class="section-title">Contáctanos</h2>
+            </div>
+
+            <div class="contact-container">
+                <!-- Info de Contacto -->
+                <div class="contact-details">
+                    <h3>Te esperamos en Aurora</h3>
+                    <ul class="contact-info-list">
+                        <li>
+                            <span class="contact-info-icon">📍</span>
+                            <div>
+                                <strong>Dirección</strong>
+                                Calle Gran Vía 42, Centro, Madrid
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contact-info-icon">📞</span>
+                            <div>
+                                <strong>Teléfono</strong>
+                                +34 912 345 678
+                            </div>
+                        </li>
+                        <li>
+                            <span class="contact-info-icon">✉️</span>
+                            <div>
+                                <strong>Email</strong>
+                                hola@cafeaurora.es
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="hours-box">
+                        <h4>Horario de Atención</h4>
+                        <p>Lunes a Viernes: 07:30 - 20:00</p>
+                        <p>Sábados y Domingos: 08:30 - 21:00</p>
+                    </div>
+                </div>
+
+                <!-- Formulario -->
+                <div class="contact-form">
+                    <form onsubmit="event.preventDefault(); alert('¡Gracias por tu mensaje! Nos pondremos en contacto contigo.');">
+                        <div class="form-group">
+                            <label for="name">Nombre Completo</label>
+                            <input type="text" id="name" required placeholder="Tu nombre">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" required placeholder="ejemplo@correo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje o Reserva</label>
+                            <textarea id="message" rows="4" required placeholder="Indícanos cuántas personas son, la hora deseada o tus dudas..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-accent" style="width: 100%;">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer>
+        <p>&copy; 2024 Café Aurora. Todos los derechos reservados.</p>
+        <p>Pasión por el grano, devoción por el sabor.</p>
+    </footer>
+
+</body>
+</html>
